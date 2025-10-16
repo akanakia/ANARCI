@@ -24,7 +24,7 @@ class CustomInstallCommand(install):
        o, e = proc.communicate()
 
        # print(o.decode())
-       print(e.decode())
+       # print(e.decode())
        
        print("INFO: HMMs built. Installing data files...")
        # Copy HMMs where ANARCI can find them
