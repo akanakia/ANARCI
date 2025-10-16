@@ -12,6 +12,8 @@ class CustomInstallCommand(install):
        ANARCI_BIN = sys.executable.split('python')[0] # bin/ folder
 
        shutil.copy('bin/ANARCI', ANARCI_BIN) # copy ANARCI executable
+       shutil.copy("bin/muscle", ANARCI_BIN) # copy muscle executable
+       shutil.copy("bin/muscle_macOS", ANARCI_BIN) # copy muscle executable for macOS
        print("INFO: ANARCI lives in: ", ANARCI_LOC) 
 
        # Build HMMs from IMGT germlines
