@@ -27,7 +27,8 @@ These are chucked into curated alignments and hmmbuild used to create the HMMs.
 """
 
 import site
-import os, sys
+import os
+import sys
 from subprocess import Popen, PIPE
 from FastaIO import chunkify
 
@@ -176,7 +177,10 @@ def format_j_genes(jalignments):
     ffile = write_fasta(jalignments)
     al_filename = os.path.join( file_path, "muscle_alignments", "all_js_aligned.fasta" )
 
-    os.chdir(os.path.join(site.getsitepackages()[0], "anarci", "bin"))
+    muscle_dir = os.path.join(file_path, "..", "bin")
+    print("INFO: current directory (%s) contents: %s"% (os.getcwd(), os.listdir(".")))
+
+    # os.chdir(os.path.join(site.getsitepackages()[0], "anarci", "bin"))
     print("INFO: Running muscle from location %s"%os.getcwd())
 
     if sys.platform == "darwin":
