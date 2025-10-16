@@ -177,12 +177,8 @@ def format_j_genes(jalignments):
     ffile = write_fasta(jalignments)
     al_filename = os.path.join( file_path, "muscle_alignments", "all_js_aligned.fasta" )
 
-    muscle_dir = os.path.join(file_path, "..", "bin")
+    os.chdir("bin")
     print("INFO: current directory (%s) contents: %s"% (os.getcwd(), os.listdir(".")))
-
-    # os.chdir(os.path.join(site.getsitepackages()[0], "anarci", "bin"))
-    print("INFO: Running muscle from location %s"%os.getcwd())
-
     if sys.platform == "darwin":
         pr = Popen( [ "muscle_macOS", "-in", ffile, "-gapopen", "-10", "-out", al_filename, ], stdout=PIPE, stderr=PIPE )
     else:
