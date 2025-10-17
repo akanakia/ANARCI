@@ -23,8 +23,8 @@ class CustomInstallCommand(install):
        proc = subprocess.Popen(["bash", "RUN_pipeline.sh"], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
        o, e = proc.communicate()
 
-       # print(o.decode())
-       # print(e.decode())
+       print(o.decode())
+       print(e.decode())
        
        print("INFO: HMMs built. Installing data files...")
        # Copy HMMs where ANARCI can find them
