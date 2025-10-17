@@ -30,6 +30,7 @@ class CustomInstallCommand(install):
        # Copy HMMs where ANARCI can find them
        shutil.copy( "curated_alignments/germlines.py", ANARCI_LOC )
        os.makedirs(os.path.join(ANARCI_LOC, "dat"), exist_ok=True)
+       print("ANARCI_LOC dir contents:", os.listdir(ANARCI_LOC))
        shutil.copytree( "HMMs", os.path.join(ANARCI_LOC, "dat/HMMs/") )
       
       # Remove data from HMMs generation
