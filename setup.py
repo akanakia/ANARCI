@@ -21,15 +21,15 @@ class CustomInstallCommand(install):
        print('INFO: Downloading germlines from IMGT and building HMMs...')
        print("INFO: running 'RUN_pipeline.sh', this will take a couple a minutes.")
        proc = subprocess.Popen(["bash", "RUN_pipeline.sh"], stdout = subprocess.PIPE, stderr = subprocess.PIPE)
-       o, e = proc.communicate()
+       proc.wait()  # This blocks until the process completes
 
-       print(o.decode())
-       print(e.decode())
+    #    o, e = proc.communicate()
+    #    print(o.decode())
+    #    print(e.decode())
        
        print("INFO: HMMs built. Installing data files...")
        # Copy HMMs where ANARCI can find them
        os.makedirs(os.path.join(ANARCI_LOC, "dat"), exist_ok=True)
-       print("ANARCI_LOC dir contents:", os.listdir(ANARCI_LOC))
        shutil.copy( "curated_alignments/germlines.py", ANARCI_LOC )
        shutil.copytree( "HMMs", os.path.join(ANARCI_LOC, "dat/HMMs/") )
       
@@ -41,6 +41,9 @@ class CustomInstallCommand(install):
            shutil.rmtree("IMGT_sequence_files/")
        except OSError:
            pass
+
+       print("INFO: ANARCI installation complete.")
+       
 
 setup(name='anarci',
      version='1.3',
